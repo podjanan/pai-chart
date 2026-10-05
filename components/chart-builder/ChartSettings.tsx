@@ -1,0 +1,5 @@
+"use client";
+import { ChartConfig } from "@/types/chart";
+type Props = { config: ChartConfig; onChange: (patch: Partial<ChartConfig>) => void };
+const fields: { key: keyof ChartConfig; label: string; placeholder: string }[] = [{ key: "title", label: "Chart title", placeholder: "e.g. Color (R3)" }, { key: "xAxisLabel", label: "X axis label", placeholder: "Date / Time" }, { key: "yAxisLabel", label: "Y axis label", placeholder: "Value" }];
+export function ChartSettings({ config, onChange }: Props) { return <section className="space-y-4"><div><p className="text-sm font-semibold text-slate-900">Chart configuration</p><p className="mt-1 text-xs text-slate-500">Name your chart and label its axes.</p></div>{fields.map(({ key, label, placeholder }) => <label key={key} className="block text-xs font-medium text-slate-600">{label}<input value={String(config[key])} onChange={(e) => onChange({ [key]: e.target.value })} placeholder={placeholder} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-violet-400 focus:ring-4 focus:ring-violet-100" /></label>)}</section>; }
